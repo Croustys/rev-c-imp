@@ -1,15 +1,8 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include "rev.h"
 
-/* typedef struct
-{
-  int lineNumber;
-  int lineLength;
-} Data; */
-
-/* char *reverse(char *str)
+char *reverse(char *str)
 {
   int temp;
   int len = strlen(str);
@@ -22,18 +15,16 @@
   }
 
   return str;
-} */
-
-/* void cleanup(size_t len, char *array[len])
+}
+void cleanup(size_t len, char *array[len])
 {
   for (size_t i = 0; i < len; i++)
   {
     free(array[i]);
   }
   free(array);
-} */
-
-/* void printResult(int lineNumber, size_t len, char *array[len])
+}
+void printResult(int lineNumber, size_t len, char *array[len])
 {
   for (size_t i = 0; i < len; i++)
   {
@@ -42,9 +33,8 @@
     else
       printf("%s\n", reverse(array[len - 1 - i]));
   }
-} */
-
-/* void handleFile(char *fileName, Data d)
+}
+void handleFile(char *fileName, Data d)
 {
   char **container = malloc(DEFAULT_LENGTH * sizeof(char *));
 
@@ -78,34 +68,4 @@
 
   printResult(d.lineNumber, count, container);
   cleanup(count, container);
-} */
-
-int main(int argc, char *argv[])
-{
-  if (argc <= 2)
-  {
-    printf("%s\n", "Usage:\n\trev [SHOW LINE NUMBERS] [MAX LINE LENGTH] files...");
-    return 1;
-  }
-
-  char *lineNums = argv[1];
-  char *lineLength = argv[2];
-  if (strcmp(lineNums, "linenums") != 0 && strcmp(lineNums, "nolinenums") != 0)
-  {
-    printf("%s\n", "error");
-    return 1;
-  }
-
-  Data d = {(strcmp(lineNums, "linenums") == 0), atoi(lineLength)};
-
-  if (argc > 3)
-  {
-    for (int i = 3; i < argc; i++)
-    {
-      char *fileName = argv[i];
-      handleFile(fileName, d);
-    }
-  }
-
-  return 0;
 }
