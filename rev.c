@@ -28,22 +28,31 @@ void printResult(int lineNumber, size_t len, char *array[len])
 {
   for (size_t i = 0; i < len; i++)
   {
+    char *reversed = reverse(array[len - 1 - i]);
+
     if (lineNumber)
-      printf("%zu %s\n", len - i, reverse(array[len - 1 - i]));
+      printf("%zu %s\n", len - i, reversed);
     else
-      printf("%s\n", reverse(array[len - 1 - i]));
+      printf("%s\n", reversed);
   }
 }
-void handleFile(char *fileName, Data d)
+void handleInput(const char *fileName, Data d)
 {
   char **container = malloc(DEFAULT_LENGTH * sizeof(char *));
 
-  FILE *f = fopen(fileName, "r");
-  if (f == NULL)
+  FILE *f;
+  if (fileName != NULL)
   {
-    printf("%s%s\n", "File opening unsuccessful: ", fileName);
-    exit(-1);
+    f = fopen(fileName, "r");
+    if (f == NULL)
+    {
+      printf("%s%s\n", "File opening unsuccessful: ", fileName);
+      exit(-1);
+    }
   }
+  else
+    f = stdin;
+
   char buf[d.lineLength];
   size_t current_length = DEFAULT_LENGTH;
   size_t count = 0;
@@ -59,6 +68,7 @@ void handleFile(char *fileName, Data d)
       char **temp = realloc(container, (current_length + DEFAULT_LENGTH) * sizeof(char *));
       if (temp == NULL)
       {
+        printf("%s\n", "Memory allocation failed!");
         exit(-1);
       }
       container = temp;

@@ -14,5 +14,6 @@ typedef struct
 char *reverse(char *str);
 void cleanup(size_t len, char *array[]);
 void printResult(int lineNumber, size_t len, char *array[]);
-void handleFile(char *fineName, Data d);
+void handleInput(const char *fineName, Data d);
+
 #endif
