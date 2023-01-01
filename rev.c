@@ -75,6 +75,7 @@ void handleInput(const char *fileName, Data d)
       current_length += DEFAULT_LENGTH;
     }
   }
+  fclose(f);
 
   printResult(d.lineNumber, count, container);
   cleanup(count, container);
