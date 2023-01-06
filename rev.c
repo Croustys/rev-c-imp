@@ -58,11 +58,11 @@ void handleInput(const char *fileName, Data d)
   else
     f = stdin;
 
-  char buf[d.lineLength];
+  char buf[d.lineLength + 1];
   size_t current_length = DEFAULT_LENGTH;
   size_t count = 0;
 
-  while (fgets(buf, d.lineLength, f) != NULL)
+  while (fgets(buf, d.lineLength + 1, f) != NULL)
   {
     container[count] = malloc(d.lineLength * sizeof(char));
     buf[strcspn(buf, "\n")] = 0;
