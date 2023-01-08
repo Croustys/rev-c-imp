@@ -41,7 +41,7 @@ void handleInput(const char *fileName, Data d)
   char **container = malloc(DEFAULT_LENGTH * sizeof(char *));
   if (container == NULL)
   {
-    fprintf(stderr, "Memory allocation failed!");
+    fprintf(stderr, "Memory allocation failed!\n");
     exit(-1);
   }
 
@@ -51,7 +51,7 @@ void handleInput(const char *fileName, Data d)
     f = fopen(fileName, "r");
     if (f == NULL)
     {
-      fprintf(stderr, "File opening unsuccessful: %s\n", fileName);
+      fprintf(stderr, "File opening unsuccessful: <%s>\n", fileName);
       exit(-1);
     }
   }
@@ -78,7 +78,7 @@ void handleInput(const char *fileName, Data d)
       char **temp = realloc(container, (current_length + DEFAULT_LENGTH) * sizeof(char *));
       if (temp == NULL)
       {
-        fprintf(stderr, "Memory allocation failed!");
+        fprintf(stderr, "Memory allocation failed!\n");
         exit(-1);
       }
       container = temp;

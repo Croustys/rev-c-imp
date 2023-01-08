@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 {
   if (argc <= 2)
   {
-    fprintf(stderr, "Usage:\n\t%s [SHOW LINE NUMBERS] [MAX LINE LENGTH] files...", argv[0]);
+    fprintf(stderr, "Usage:\n\t%s [SHOW LINE NUMBERS] [MAX LINE LENGTH] files...\n", argv[0]);
     return 1;
   }
 
@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
   char *lineLength = argv[2];
   if (strcmp(lineNums, "linenums") != 0 && strcmp(lineNums, "nolinenums") != 0)
   {
-    fprintf(stderr, "[SHOW LINE NUMBERS] -> [linenums|nolinenums]");
+    fprintf(stderr, "[SHOW LINE NUMBERS] -> [linenums|nolinenums]\n");
     return 1;
   }
 
